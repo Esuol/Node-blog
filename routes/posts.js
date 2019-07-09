@@ -13,32 +13,32 @@ router.get('/', (req, res, next) => {
 })
 
 // POST /posts/create 发表一篇文章
-router.post('/create', checkLogin, function (req, res, next) {
+router.post('/create', checkLogin,  (req, res, next) => {
   res.send('发表文章')
 })
 
 // GET /posts/create 发表文章页
-router.get('/create', checkLogin, function (req, res, next) {
+router.get('/create', checkLogin,  (req, res, next) => {
   res.send('发表文章页')
 })
 
 // GET /posts/:postId 单独一篇的文章页
-router.get('/:postId', function (req, res, next) {
+router.get('/:postId',  (req, res, next) => {
   res.send('文章详情页')
 })
 
 // GET /posts/:postId/edit 更新文章页
-router.get('/:postId/edit', checkLogin, function (req, res, next) {
+router.get('/:postId/edit', checkLogin,  (req, res, next) => {
   res.send('更新文章页')
 })
 
 // POST /posts/:postId/edit 更新一篇文章
-router.post('/:postId/edit', checkLogin, function (req, res, next) {
+router.post('/:postId/edit', checkLogin,  (req, res, next) => {
   res.send('更新文章')
 })
 
 // GET /posts/:postId/remove 删除一篇文章
-router.get('/:postId/remove', checkLogin, function (req, res, next) {
+router.get('/:postId/remove', checkLogin,  (req, res, next) => {
   res.send('删除文章')
 })
 
