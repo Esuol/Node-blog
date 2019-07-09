@@ -11,7 +11,6 @@ app.set('view engine', 'ejs')// 设置模板引擎为 ejs
 app.use('/', indexRouter)
 app.use('/users', userRouter)
 
-// 错误处理
 //错误处理
 app.use(function (err, req, res, next) {
   console.error(err.stack)
