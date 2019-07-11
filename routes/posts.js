@@ -10,7 +10,15 @@ const checkLogin = require('../middlewares/check').checkLogin
 //   eg: GET /posts?author=xxx
 
 router.get('/', (req, res, next) => {
-  res.render('posts')
+  const author = req.query.author
+
+  PostModel.getPosts(author)
+    .then(posts => {
+      res.render('posts', {
+        posts
+      })
+    })
+    .catch(next)
 })
 
 // GET /posts/create 发表文章页
