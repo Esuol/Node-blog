@@ -19,7 +19,7 @@ router.post('/create', checkLogin,  (req, res, next) => {
 
 // GET /posts/create 发表文章页
 router.get('/create', checkLogin,  (req, res, next) => {
-  res.send('发表文章页')
+  res.render('create')
 })
 
 // GET /posts/:postId 单独一篇的文章页
