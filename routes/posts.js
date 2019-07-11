@@ -66,7 +66,18 @@ router.post('/create', checkLogin,  (req, res, next) => {
 
 // GET /posts/:postId 单独一篇的文章页
 router.get('/:postId',  (req, res, next) => {
-  res.send('文章详情页')
+  // 获取文章id
+  const postId = req.params.postId
+  Promise.all([
+    PostModel.getPostById(postId),
+    PostModel.incPv(postId)
+  ]).then(result => {
+    const post = result[0]
+    if(!post) throw new Error('该文章不存在')
+    res.render('post', {
+      post
+    }).catch(next)
+  })
 })
 
 // GET /posts/:postId/edit 更新文章页
