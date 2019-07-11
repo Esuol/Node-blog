@@ -57,7 +57,7 @@ module.exports = {
     return Post
       .findOne({_id: postId})
       .populate({path: 'author', model: 'User'})
-      .exec
+      .exec()
   },
 
   // 通过文章 id 更新一篇文章

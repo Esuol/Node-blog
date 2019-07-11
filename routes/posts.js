@@ -68,6 +68,7 @@ router.post('/create', checkLogin,  (req, res, next) => {
 router.get('/:postId',  (req, res, next) => {
   // 获取文章id
   const postId = req.params.postId
+  
   Promise.all([
     PostModel.getPostById(postId),
     PostModel.incPv(postId)
