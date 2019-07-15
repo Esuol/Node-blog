@@ -22,7 +22,7 @@ module.exports = {
     return Comment.findOne({_id: commentId}).exec()
   },
   // 通过留言 id 删除一个留言
-  deleteCommentById (commentId) {
+  delCommentById (commentId) {
     return Comment.deleteOne({ _id: commentId }).exec()
   },
    // 通过文章 id 删除该文章下所有留言

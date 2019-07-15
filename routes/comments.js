@@ -40,12 +40,12 @@ router.get('/:commentId/remove', checkLogin,  (req, res, next) => {
   const commentId = req.params.commentId
   const author = req.session.user._id
 
-  CommentModel.deleteCommentById(commentId)
+  CommentModel.getCommentById(commentId)
     .then(function (comment) {
+      console.log(comment)
       if (!comment) {
         throw new Error('留言不存在')
       }
-      console.log(comment.author)
       if (comment.author.toString() !== author.toString()) {
         throw new Error('没有权限删除留言')
       }
