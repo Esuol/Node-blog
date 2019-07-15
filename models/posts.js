@@ -21,17 +21,17 @@ Post.plugin('contentToHtml', {
 
 // 给 post 添加留言数 commentsCount
 Post.plugin('addCommentsCount', {
-  afterFind (posts) {
-    return Promise.all(posts.map(post => {
-      return CommentModel.getCommentsCount(post._id).then(commentsCount => {
+  afterFind: function (posts) {
+    return Promise.all(posts.map(function (post) {
+      return CommentModel.getCommentsCount(post._id).then(function (commentsCount) {
         post.commentsCount = commentsCount
         return post
       })
     }))
   },
-  afterFindOne (post) {
+  afterFindOne: function (post) {
     if (post) {
-      return CommentModel.getCommentsCount(post._id).then(count => {
+      return CommentModel.getCommentsCount(post._id).then(function (count) {
         post.commentsCount = count
         return post
       })
