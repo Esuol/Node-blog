@@ -40,6 +40,6 @@ module.exports = {
   },
    // 通过文章 id 获取该文章下留言数
   getCommentsCount (postId) {
-  return Comment.count({ postId: postId }).exec()
+    return Comment.count({ postId: postId }).exec()
   }
 }
