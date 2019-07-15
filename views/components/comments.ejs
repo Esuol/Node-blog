@@ -16,7 +16,6 @@
                 <span class="date"><%= comment.created_at %></span>
               </div>
               <div class="text"><%- comment.content %></div>
-
               <% if (user && comment.author._id && user._id.toString() === comment.author._id.toString()) { %>
                 <div class="actions">
                   <a class="reply" href="/comments/<%= comment._id %>/remove">删除</a>
