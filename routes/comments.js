@@ -36,15 +36,16 @@ router.post('/', checkLogin, function (req, res, next) {
 })
 
 // GET /comments/:commentId/remove 删除一条留言
-router.get('/:commentId/remove', checkLogin, function (req, res, next) {
+router.get('/:commentId/remove', checkLogin,  (req, res, next) => {
   const commentId = req.params.commentId
   const author = req.session.user._id
 
-  CommentModel.getCommentById(commentId)
+  CommentModel.deleteCommentById(commentId)
     .then(function (comment) {
       if (!comment) {
         throw new Error('留言不存在')
       }
+      console.log(comment.author)
       if (comment.author.toString() !== author.toString()) {
         throw new Error('没有权限删除留言')
       }

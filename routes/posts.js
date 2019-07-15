@@ -66,23 +66,6 @@ router.post('/create', checkLogin,  (req, res, next) => {
 })
 
 // GET /posts/:postId 单独一篇的文章页
-router.get('/:postId',  (req, res, next) => {
-  // 获取文章id
-  const postId = req.params.postId
-
-  Promise.all([
-    PostModel.getPostById(postId),
-    PostModel.incPv(postId)
-  ]).then(result => {
-    const post = result[0]
-    if(!post) throw new Error('该文章不存在')
-    res.render('post', {
-      post
-    }).catch(next)
-  })
-})
-
-// GET /posts/:postId 单独一篇的文章页
 router.get('/:postId', (req, res, next) => {
   const postId = req.params.postId
 
@@ -91,7 +74,7 @@ router.get('/:postId', (req, res, next) => {
     CommentModel.getComments(postId), // 获取该文章所有留言
     PostModel.incPv(postId)// pv 加 1
   ])
-    .then(result => {
+    .then(function (result) {
       const post = result[0]
       const comments = result[1]
       if (!post) {
@@ -99,12 +82,13 @@ router.get('/:postId', (req, res, next) => {
       }
 
       res.render('post', {
-        post: post,
-        comments: comments
+        post,
+        comments
       })
     })
     .catch(next)
 })
+
 
 // GET /posts/:postId/edit 更新文章页
 router.get('/:postId/edit', checkLogin,  (req, res, next) => {
