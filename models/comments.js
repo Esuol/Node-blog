@@ -27,5 +27,19 @@ module.exports = {
    // 通过文章 id 删除该文章下所有留言
   delCommentsByPostId (postId) {
     return Comment.deleteMany({postId}).exec()
+  },
+  // 通过文章 id 获取该文章下所有留言，按留言创建时间升序
+  getComments (postId) {
+    return Comment
+      .find({postId})
+      .populate({path: 'author', model: 'User'})
+      .sort({_id: 1})
+      .addCreatedAt()
+      .contentToHtml()
+      .exec()
+  },
+   // 通过文章 id 获取该文章下留言数
+  getCommentsCount (postId) {
+  return Comment.count({ postId: postId }).exec()
   }
 }
