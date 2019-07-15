@@ -167,7 +167,7 @@ router.get('/:postId/remove', checkLogin,  (req, res, next) => {
       if(author.toString() !== post.author._id.toString()) {
        throw new Error('权限不足')
       }
-      PostModel.delPostById(postId)
+      PostModel.delPostById(postId, author)
         .then(() => {
           req.flash('success', '删除文章成功')
           // 删除成功后跳转到主页
