@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const path = require('path')
 const express = require('express')
 const session = require('express-session')
@@ -56,6 +57,12 @@ app.use(require('express-formidable')({
 
 // 路由
 routes(app)
+
+app.use(function (err, req, res, next) {
+  console.error(err)
+  req.flash('error', err.message)
+  res.redirect('/posts')
+})
 
 // 监听端口，启动程序
 app.listen(config.port, function () {
